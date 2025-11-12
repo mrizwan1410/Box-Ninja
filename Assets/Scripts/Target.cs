@@ -12,8 +12,11 @@ public class Target : MonoBehaviour
     private float ySpawnPos = 2;
 
     private Rigidbody targetRb;
+
+    private GameManager gameManager;
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         targetRb = GetComponent<Rigidbody>();
 
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
@@ -24,6 +27,7 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        gameManager.UpdateScore(5);
     }
 
     private void OnTriggerEnter(Collider other)
