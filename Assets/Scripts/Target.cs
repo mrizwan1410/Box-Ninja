@@ -12,6 +12,8 @@ public class Target : MonoBehaviour
     private float ySpawnPos = 2;
     public int pointValue;
 
+    public ParticleSystem explosionParticle;
+
     private Rigidbody targetRb;
 
     private GameManager gameManager;
@@ -28,6 +30,7 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         gameManager.UpdateScore(pointValue);
     }
 
