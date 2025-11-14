@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private int score;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
     public List<GameObject> targets;
 
     private void Start()
@@ -24,6 +25,12 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
 
     }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+    }
+
     IEnumerator SpawnTarget()
     {
         while(true)
