@@ -12,16 +12,13 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
 
     public Button restartButton;
+    public GameObject titleScreen;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public List<GameObject> targets;
 
     private void Start()
     {
-        isGameActive = true;
-        StartCoroutine(SpawnTarget());
-        score = 0;
-        UpdateScore(0);
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -30,11 +27,22 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    public void StartGame(int difficulty)
+    {
+        titleScreen.SetActive(false);
+        spawnRate /= difficulty;
+        isGameActive = true;
+        StartCoroutine(SpawnTarget());
+        score = 0;
+        UpdateScore(0);
+    }
+
     public void GameOver()
     {
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
         gameOverText.gameObject.SetActive(true);
+        titleScreen.SetActive(true);
     }
 
     public void RestartGame()
