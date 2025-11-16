@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        gameOverText.gameObject.SetActive(false);
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(int difficulty)
     {
         titleScreen.SetActive(false);
+        spawnRate = 1f;
         spawnRate /= difficulty;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
